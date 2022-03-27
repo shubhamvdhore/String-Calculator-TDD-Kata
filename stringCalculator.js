@@ -1,10 +1,19 @@
 
 const add  = function(exp){
     let sum = 0;
-    let nums = exp.split(",");
+    vadlidateInput(exp);
+    let nums = exp.split(/,|\n/);
     sum = getSumOfStringArray(nums);
     return sum;
 };
+
+function vadlidateInput(exp){
+    //check if input ends with new line
+    if(exp.endsWith("\n"))
+        throw new Error("INVALID INPUT");
+    
+    return true;
+}
 
 function getSumOfStringArray(nums){
     let sum = 0;
