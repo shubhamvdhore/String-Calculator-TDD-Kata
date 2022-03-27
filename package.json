@@ -1,0 +1,23 @@
+{
+  "name": "string-calculator-tdd-kata",
+  "version": "1.0.0",
+  "description": "",
+  "main": "stringCalculator.js",
+  "dependencies": {
+    "jest": "^27.5.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shubhamvdhore/String-Calculator-TDD-Kata.git"
+  },
+  "author": "Shubham Dhore",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shubhamvdhore/String-Calculator-TDD-Kata/issues"
+  },
+  "homepage": "https://github.com/shubhamvdhore/String-Calculator-TDD-Kata#readme"
+}
