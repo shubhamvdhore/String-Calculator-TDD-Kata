@@ -1,12 +1,26 @@
+const { resolveRunner } = require("jest-resolve");
+
 const add  = function(exp){
     let sum = 0;
-    vadlidateInput(exp);
+    validateInput(exp);
     
     let nums = getFlattenArrayOfStrings(exp);
-    // let nums = exp.split(/,|\n/);
+    validateInputForNegativeNumers(nums);
     sum = getSumOfStringArray(nums);
     return sum;
 };
+
+function validateInputForNegativeNumers(nums){
+    let negatives = [];
+    for(let i = 0; i < nums.length; i++){
+        if(parseInt(nums[i]) < 0)
+            negatives.push(nums[i])
+    }
+    if(negatives.length > 0)
+        throw new Error("negatives not allowed : " + negatives.join(", "));
+    
+    return true;
+}
 
 //function returns the array of strings only
 function getFlattenArrayOfStrings(exp){
@@ -34,7 +48,7 @@ function splitExpressionByDelimiters(exp, delimiters){
 }
 
 
-function vadlidateInput(exp){
+function validateInput(exp){
     //check if input ends with new line
     if(exp.endsWith("\n"))
         throw new Error("INVALID INPUT");
