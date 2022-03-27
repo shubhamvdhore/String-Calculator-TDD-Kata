@@ -1,9 +1,7 @@
-const { resolveRunner } = require("jest-resolve");
-
 const add  = function(exp){
     let sum = 0;
     validateInput(exp);
-    
+ 
     let nums = getFlattenArrayOfStrings(exp);
     validateInputForNegativeNumers(nums);
     sum = getSumOfStringArray(nums);
@@ -16,7 +14,7 @@ function validateInputForNegativeNumers(nums){
         if(parseInt(nums[i]) < 0)
             negatives.push(nums[i])
     }
-    if(negatives.length > 0)
+    if(negatives.length)
         throw new Error("negatives not allowed : " + negatives.join(", "));
     
     return true;
@@ -27,12 +25,20 @@ function getFlattenArrayOfStrings(exp){
     let delimiters = [",", "\n"];
 
     //check if exp has custom delimeters
-    if(exp.startsWith("//")){
+    if(hasCustomDelimiters(exp)){
         delimiters.push(exp.charAt(2));
-        exp = exp.substring(exp.indexOf("\n") + 1);     //remove the first line from string expresion
+        removeFirstLineFromInput(exp);     //remove the first line from string expresion
     }
 
     return splitExpressionByDelimiters([exp], delimiters);
+}
+
+function hasCustomDelimiters(exp){
+    return exp.startsWith("//");
+}
+
+function removeFirstLineFromInput(exp){
+    exp = exp.substring(exp.indexOf("\n") + 1);
 }
 
 function splitExpressionByDelimiters(exp, delimiters){
